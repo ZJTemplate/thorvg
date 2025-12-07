@@ -264,7 +264,11 @@ bool LottieLoader::read()
 
     if (!content || size == 0) return false;
 
+#ifdef THORVG_LOTTIE_EXPRESSIONS_SUPPORT
+    run(0);
+#else
     TaskScheduler::request(this);
+#endif
 
     return true;
 }
@@ -393,7 +397,11 @@ bool LottieLoader::frame(float no)
 
     if (comp) comp->clear();     //clear synchronously
 
+#ifdef THORVG_LOTTIE_EXPRESSIONS_SUPPORT
+    run(0);
+#else
     TaskScheduler::request(this);
+#endif
 
     return true;
 }
@@ -500,7 +508,11 @@ bool LottieLoader::tween(float from, float to, float progress)
 
     if (comp) comp->clear();     //clear synchronously
 
+#ifdef THORVG_LOTTIE_EXPRESSIONS_SUPPORT
+    run(0);
+#else
     TaskScheduler::request(this);
+#endif
 
     return true;
 }
